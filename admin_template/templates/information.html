@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Information Insert</h1>
+
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Insert Data</h6>
+    </div>
+    <div class="card-body">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-success{% endif %}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <form method="POST" action="{% url 'information' %}">
+            {% csrf_token %}
+            <div class="form-group row">
+              
+                <div class="col-md-4">
+                    <label class="col-form-label">Name</label>
+                    <input type="text" name="my_name" class="form-control form-control-user" placeholder="Enter name">
+                </div>
+            </div>
+            <div class="form-group row">
+                
+                <div class="col-md-4">
+                    <label class="col-form-label">Email Address</label>
+                    <input type="email" name="email" class="form-control form-control-user" placeholder="Enter Email Address...">
+                </div>
+            </div>
+            <div class="form-group row">
+                
+                <div class="col-md-4">
+                    <label class="col-form-label">Mobile Number</label>
+                    <input type="text" name="mobile_no" class="form-control form-control-user" placeholder="Enter mobile number">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <input type="submit" class="btn btn-primary btn-user btn-block" value="Submit">
+                </div>
+            </div>
+        </form>
+       
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Status</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Payment Status</h1>
+        {% if status == 'success' %}
+            <div class="alert alert-success">Payment was successful!</div>
+        {% elif status == 'failed' %}
+            <div class="alert alert-danger">Payment failed. Please try again.</div>
+        {% else %}
+            <div class="alert alert-info">Payment status is unknown.</div>
+        {% endif %}
+        <a href="{% url 'payment-form' %}" class="btn btn-primary">Go Back to Payment Form</a>
+    </div>
+</body>
+</html>

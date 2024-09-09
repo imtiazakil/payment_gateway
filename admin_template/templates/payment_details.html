@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Payment Information</h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Payment Details</h6>
+        </div>
+        <div class="card-body">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="table-responsive">
+                {% if payments %}
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Amount</th>
+                            <th>Transaction ID</th>
+                            <th>Status</th>
+                            <th>Response Data</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Amount</th>
+                            <th>Transaction ID</th>
+                            <th>Status</th>
+                            <th>Response Data</th>
+                            <th>Actions</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for payment in payments %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ payment.name }}</td>
+                            <td>{{ payment.email }}</td>
+                            <td>{{ payment.amount }}</td>
+                            <td>{{ payment.tran_id }}</td>
+                            <td>{{ payment.get_status_display }}</td>
+                            <td>{{ payment.response_data }}</td>
+                            <td>
+                                <!-- Add action buttons if needed -->
+                                <a href="" class="btn btn-info btn-sm">View</a>
+                                <!-- If you need to handle deletion or other actions, add them here -->
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                    <p class="text-center">No payment data available.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // Include any additional JavaScript if needed
+    </script>
+{% endblock %}
